@@ -105,7 +105,6 @@ public class KayitOl extends AppCompatActivity implements ExpandableListView.OnC
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-                // ...
             }
         };
 

@@ -99,10 +99,6 @@ public class GoogleKayitOl extends AppCompatActivity
 
             }
         });
-
-        //createUser();
-
-
     }
     private void createUser() {
         // TODO
@@ -114,6 +110,7 @@ public class GoogleKayitOl extends AppCompatActivity
         final String soyadd = soyad.getText().toString();
 //        final String parola = password.getText().toString();
 //        final String mail = email.getText().toString();
+        //parola ve email almıyoruz çünkü google maili ve şifresiyle girdi
         final String dtarihi = tarih.getText().toString();
         FirebaseUser user = mAuth.getCurrentUser();
         userId = mDatabaseReference.push().getKey();

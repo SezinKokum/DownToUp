@@ -42,12 +42,12 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private static final String TAG = "1" ;
     private EditText email;
     private EditText password;
-    private Button kaydolBtn;
-    private Button girisBtn;
-    private SignInButton google2;
+    private Button kaydolBtn; // hesabı olmayanlar kaydol butonu ile kayitol.java ya geçer
+    private Button girisBtn; // email ve şifre yazdıktan sonra girişBtn ile anasayfaya geçilir
+    private SignInButton google2; // google ile oturum aç butonu
     private GoogleApiClient mGoogleApiClient;
     public static final int RC_SIGN_IN = 1;
-    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth mFirebaseAuth; // authentication için
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseDatabase mFirebaseDatabase; // access database
     private DatabaseReference mDatabaseReference;
@@ -89,8 +89,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         google2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // intent2 = new Intent(Login.this, GoogleSignIn.class);
-                // startActivity(intent2);
                 signIn();
             }
         });
@@ -101,7 +99,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 String password2 = password.getText().toString();
                 email2 = email2.trim();
                 password2 = password2.trim();
-
                 //E-mail girilmemiş ise kullanıcıyı uyarıyoruz
                 if (TextUtils.isEmpty(email2)) {
                     Toast.makeText(getApplicationContext(), "Lütfen emailinizi giriniz", Toast.LENGTH_SHORT).show();
@@ -145,8 +142,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                         }
                     }
                 };
-                //intent3 = new Intent(Login.this, HomePage.class);
-                //startActivity(intent3);
             }
 
         });
@@ -211,8 +206,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                            final String userEmailRef2;
-                            final String userEmailRef = user.getEmail().toString();
+                            final String userEmailRef2; // kişisinin mailindeki noktayı kaldırıp virgüle çevirdim çünkü key bilgisinde nokta kabul etmiyor
+                            final String userEmailRef = user.getEmail().toString(); // kişinin db deki esas maili (noktalı)
 //                          userEmailRef = emailToKey(mDatabaseReference.child(String.valueOf(email)).toString());
                             userEmailRef2 = emailToKey(userEmailRef.toString());
                             //               Log.w(TAG, "signInWithCredential", task.getException());
@@ -340,30 +335,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         }
     }
     public String emailToKey(String emailAddress) {
-//        return emailAddress.replace(/\./g, ',');
         return emailAddress.replace('.', ',');
     }
-//    private void checkAccountEmailExistInFirebase(String userEmailRef) {
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        final boolean[] b = new boolean[1];
-//        mAuth.fetchProvidersForEmail(userEmailRef).addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<ProviderQueryResult> task) {
-//                b[0] = !task.getResult().getProviders().isEmpty();
-//                if (b[0] = true){
-//                    Toast.makeText(Login.this, "Mail var cınım" ,
-//                            Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(Login.this, HomePage.class));
-//                    finish();
-//                }
-//                else{
-//                    Toast.makeText(Login.this, "Mail yok cınım" ,
-//                            Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(Login.this, GoogleKayitOl.class));
-//                    finish();
-//                }
-//            }
-//        });
-//
-//    }
 }
