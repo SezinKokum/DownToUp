@@ -2,13 +2,21 @@ package com.tatlicilar.downtoup;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
+import android.view.MenuInflater;
+
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -33,39 +41,42 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     private ProgressDialog mProgressDialog;
     private FirebaseDatabase mFirebaseDatabase; // access database
     private DatabaseReference mDatabaseReference;
+    private TextView mTextMessage;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_Paylasim:
+                    mTextMessage.setText("Paylaşım");
+                    return true;
+                case R.id.navigation_Chat:
+                    mTextMessage.setText("Chat");
+                    return true;
+                case R.id.navigation_Egitim:
+                    mTextMessage.setText("Egitim");
+                    return true;
+                case R.id.navigation_Profil:
+                    mTextMessage.setText("Profil");
+                    return true;
+            }
+            return false;
+        }
+
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        chatBtn = (Button)findViewById(R.id.chatBtn);
-        egitimBtn = (Button)findViewById(R.id.egitimBtn);
-        profilBtn= (Button)findViewById(R.id.profilBtn);
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                intent = new Intent(HomePage.this, ChatActivity.class);
-//                startActivity(intent);
-            }
-
-        });
-
-        egitimBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                intent2 = new Intent(HomePage.this, EgitimActivity.class);
-//                startActivity(intent2);
-            }
-
-        });
-
-        profilBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                intent3 = new Intent(HomePage.this, Profil.class);
-//                startActivity(intent3);
-            }
-
-        });
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        mTextMessage=(TextView) findViewById(R.id.message) ;
+        // Geri butonu
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         //FirebaseAuth sınıfının referans olduğu nesneleri kullanabilmek için getIns
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -79,23 +90,10 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                     //onSignedInInitialize(user.getDisplayName());
                 }
                 else{
-                    //user is signed out
-                    //  onSignedOutCleanup();
-//                    startActivityForResult(
-//                            AuthUI.getInstance()
-//                                    .createSignInIntentBuilder()
-//                                    .setIsSmartLockEnabled(false)
-//                                    .setProviders(
-//                                            AuthUI.EMAIL_PROVIDER,
-//                                            AuthUI.GOOGLE_PROVIDER
-////                                            AuthUI.FACEBOOK_PROVIDER
-//                                    )
-//                                    .build(),
-//                            RC_SIGN_IN);
                 }
             }
         };
-                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
@@ -103,6 +101,7 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                 .enableAutoManage(HomePage.this, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,5 +201,8 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         //Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
+    }
+
+    private class OnNavigationItemSelectedListener {
     }
 }
