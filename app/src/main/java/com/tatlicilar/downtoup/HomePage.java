@@ -1,4 +1,10 @@
 package com.tatlicilar.downtoup;
+//import android.support.v4.app.Fragment;
+//import android.app.FragmentManager;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -28,8 +34,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.tatlicilar.downtoup.fragment.Ebook;
+import com.tatlicilar.downtoup.fragment.Egitim;
+import com.tatlicilar.downtoup.fragment.FragmentEducation;
 
-public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
+        FragmentEducation.OnFragmentInteractionListener,Egitim.OnFragmentInteractionListener,
+        Ebook.OnFragmentInteractionListener {
 
     private Button chatBtn;
     private Button egitimBtn;
@@ -42,6 +53,8 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     private FirebaseDatabase mFirebaseDatabase; // access database
     private DatabaseReference mDatabaseReference;
     private TextView mTextMessage;
+    FragmentManager manager = getSupportFragmentManager();
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -56,6 +69,16 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                     return true;
                 case R.id.navigation_Egitim:
                     mTextMessage.setText("Egitim");
+//                    FragmentEducation fragment = new FragmentEducation();
+                    Fragment fragment = (Fragment) manager.findFragmentByTag(FragmentEducation.class.getSimpleName());
+                    if (fragment == null) {
+                        fragment = FragmentEducation.newInstance();
+                    }
+                    setFragment(fragment);
+//                    FragmentManager fragmentManager = getSupportFragmentManager();
+//                    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.tabs, fragment);
+//                    fragmentTransaction.commit();
                     return true;
                 case R.id.navigation_Profil:
                     mTextMessage.setText("Profil");
@@ -203,6 +226,18 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     private class OnNavigationItemSelectedListener {
+    }
+    public void setFragment(Fragment fragment) {
+
+        android.support.v4.app.FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.replace(R.id.contentLayout, fragment, fragment.getClass().getSimpleName());
+        fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+        fragmentTransaction.commit();
     }
 }
