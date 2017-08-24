@@ -6,22 +6,23 @@
     android:layout_height="match_parent"
     tools:context="com.tatlicilar.downtoup.Login"
     android:orientation="vertical"
-    android:background="#ffa500">
+    android:background="@drawable/bulut">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="10dp"
         android:layout_weight="2"
         android:gravity="center">
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/ikon"/>
+            android:id="@+id/ikon"
+            android:src="@drawable/angl"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_weight="7"
@@ -29,38 +30,25 @@
         android:weightSum="7"> 
 
         <EditText
+            android:layout_margin="1dp"
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:ems="10"
+            android:background="#FFFAF0"
             android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            android:textColorHint="#FFFAF0"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="155dp" />
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:inputType="textEmailAddress" />
 
         <EditText
+            android:layout_margin="1dp"
             android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:ems="10"
+            android:layout_height="50dp"
             android:hint="Parola"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
             android:inputType="textPassword"
-            android:textColorHint="#FFFAF0"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="212dp" />
-
-        <CheckBox
-            android:id="@+id/beniHatirla"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="10dp"
-            android:checked="true"
-            android:text="Beni Hatırla"
-            android:textColor="#FFFAF0"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="269dp" />
+            android:background="#FFFAF0" />
 
         <Button
             android:id="@+id/girisBtn"
@@ -73,26 +61,28 @@
             tools:layout_editor_absoluteX="267dp"
             tools:layout_editor_absoluteY="283dp" />
 
-        <Button
-            android:id="@+id/forgot"
-            android:layout_width="160dp"
-            android:background="#00000000"
-            android:layout_height="wrap_content"
-            android:text="Parolamı unuttum"
-            android:textColor="#FFFAF0" />
-
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
 
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/google2"
-                android:layout_width="180dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="80dp">
-            </com.google.android.gms.common.SignInButton>
+            <CheckBox
+                android:id="@+id/beniHatirla"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:checked="false"
+                android:text="Beni Hatırla"
+                android:textColor="#FFFAF0" />
 
+            <Button
+                android:id="@+id/forgot"
+                android:layout_width="150dp"
+                android:background="#00000000"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:textAllCaps="false"
+                android:text="Parolamı unuttum"
+                android:textColor="#FFFAF0" />
             <!--<com.facebook.login.widget.LoginButton-->
             <!--android:id="@+id/facebook2"-->
             <!--android:layout_width="180dp"-->
@@ -102,18 +92,27 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.53">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFAF0"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="58dp"
-                android:text="Hesabınız yok mu? E-mail ile kaydol" />
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="85dp"
+                android:layout_marginTop="50dp"
+                android:background="#FF9900"
+                android:text="E-Posta ile kaydolun" />
+
+            <com.google.android.gms.common.SignInButton
+                android:background="@drawable/google"
+                android:id="@+id/google2"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="85dp"
+                android:layout_marginTop="10dp">
+            </com.google.android.gms.common.SignInButton>
 
             <Button
                 android:id="@+id/kayitBtn"
@@ -126,7 +125,7 @@
                 android:background="#00000000"
                 android:text="Kaydol"
                 android:layout_alignParentEnd="true" />
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
