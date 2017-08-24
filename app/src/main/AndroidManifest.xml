@@ -18,7 +18,10 @@
         </activity>
         <activity android:name=".KayitOl" />
         <activity android:name=".HomePage" />
-        <activity android:name=".GoogleKayitOl"></activity>
+        <activity android:name=".GoogleKayitOl" />
+        <activity android:name=".EgitimActivity" />
+        <activity android:name=".EgitimIcerik1" />
+        <activity android:name=".EgitimIcerik2"></activity>
     </application>
 
 </manifest>
