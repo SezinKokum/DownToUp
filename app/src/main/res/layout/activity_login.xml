@@ -57,6 +57,7 @@
             android:layout_marginTop="10dp"
             android:background="#FF4500"
             android:text="Giriş"
+            android:textAllCaps="false"
             android:textColor="#FFFAF0"
             tools:layout_editor_absoluteX="267dp"
             tools:layout_editor_absoluteY="283dp" />
@@ -103,7 +104,9 @@
                 android:layout_marginLeft="85dp"
                 android:layout_marginTop="50dp"
                 android:background="#FF9900"
-                android:text="E-Posta ile kaydolun" />
+                android:textAllCaps="false"
+                android:text="E-Posta ile kaydolun"
+                android:textColor="#FFFAF0"/>
 
             <Button
                 android:id="@+id/google2"
