@@ -21,7 +21,14 @@
         <activity android:name=".GoogleKayitOl" />
         <activity android:name=".EgitimActivity" />
         <activity android:name=".EgitimIcerik1" />
-        <activity android:name=".EgitimIcerik2"></activity>
+        <activity android:name=".EgitimIcerik2" />
+        <activity android:name=".WordViewHolder" />
+        <activity android:name=".WordModel" />
+        <activity android:name=".SearchDecoration" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".MyAdapter" />
+        <activity android:name=".MyHolder" />
+        <activity android:name=".CustomFilter"></activity>
     </application>
 
 </manifest>

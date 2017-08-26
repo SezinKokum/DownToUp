@@ -73,6 +73,7 @@ public class Melek {
 
     }
 
+
     public String getAd() {
         return ad;
     }
