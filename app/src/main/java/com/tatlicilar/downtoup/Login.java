@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private EditText password;
     private Button kaydolBtn; // hesabı olmayanlar kaydol butonu ile kayitol.java ya geçer
     private Button girisBtn; // email ve şifre yazdıktan sonra girişBtn ile anasayfaya geçilir
-    private SignInButton google2; // google ile oturum aç butonu
+    private Button google2; // google ile oturum aç butonu
     private GoogleApiClient mGoogleApiClient;
     public static final int RC_SIGN_IN = 1;
     private FirebaseAuth mFirebaseAuth; // authentication için
@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         kaydolBtn = (Button)findViewById(R.id.kayitBtn);
-        google2 = (SignInButton)findViewById(R.id.google2);
+        google2 = (Button)findViewById(R.id.google2);
         girisBtn = (Button)findViewById(R.id.girisBtn);
         password = (EditText)findViewById(R.id.password);
         email = (EditText)findViewById(R.id.email);

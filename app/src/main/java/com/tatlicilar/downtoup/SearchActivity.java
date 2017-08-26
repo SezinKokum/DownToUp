@@ -7,22 +7,34 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v7.widget.SearchView;
 
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
 
     SearchView sv;
-
+    private FirebaseDatabase mFirebaseDatabase; // access database
+    private DatabaseReference mDatabaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference("users");
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,17 +68,35 @@ public class SearchActivity extends AppCompatActivity {
     //ADD PLAYERS TO ARRAYLIST
     private ArrayList<AramaKisiler> getKisiler()
     {
-        ArrayList<AramaKisiler> kisiler=new ArrayList<>();
-        AramaKisiler kisi=new AramaKisiler();
-        kisi.setName("Ander Herera");
-        kisi.setPos("Midfielder");
-        kisi.setImg(R.drawable.shakira);
-        kisiler.add(kisi);
-        kisi=new AramaKisiler();
-        kisi.setName("David De Geaa");
-        kisi.setPos("Goalkeeper");
-        kisi.setImg(R.drawable.shakira);
-        kisiler.add(kisi);
+        final ArrayList<AramaKisiler> kisiler=new ArrayList<>();
+//        final AramaKisiler kisi=new AramaKisiler();
+
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    final AramaKisiler kisi=new AramaKisiler();
+                    kisi.setName(postSnapshot.child("ad").getValue().toString().concat(postSnapshot.child("soyad").getValue().toString()));
+                    kisi.setPos("Profili Gör");
+                    kisi.setImg(R.drawable.shakira);
+                    kisiler.add(kisi);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+//        kisi.setName("Ander Herera");
+//        kisi.setPos("Midfielder");
+//        kisi.setImg(R.drawable.shakira);
+//        kisiler.add(kisi);
+//        kisi=new AramaKisiler();
+//        kisi.setName("David De Geaa");
+//        kisi.setPos("Goalkeeper");
+//        kisi.setImg(R.drawable.shakira);
+//        kisiler.add(kisi);
         return kisiler;
     }
 }
