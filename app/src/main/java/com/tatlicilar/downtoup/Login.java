@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private EditText password;
     private Button kaydolBtn; // hesabı olmayanlar kaydol butonu ile kayitol.java ya geçer
     private Button girisBtn; // email ve şifre yazdıktan sonra girişBtn ile anasayfaya geçilir
-    private Button google2; // google ile oturum aç butonu
+    private SignInButton google2; // google ile oturum aç butonu
     private GoogleApiClient mGoogleApiClient;
     public static final int RC_SIGN_IN = 1;
     private FirebaseAuth mFirebaseAuth; // authentication için
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private DatabaseReference mDatabaseReference;
     private ProgressDialog mProgressDialog;
     private String userId;
-
+    public static String mail_adres;
     Intent intent, intent20,intent21;
     private Object g;
 
@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         kaydolBtn = (Button)findViewById(R.id.kayitBtn);
-        google2 = (Button)findViewById(R.id.google2);
+        google2 = (SignInButton)findViewById(R.id.google2);
         girisBtn = (Button)findViewById(R.id.girisBtn);
         password = (EditText)findViewById(R.id.password);
         email = (EditText)findViewById(R.id.email);
@@ -152,6 +152,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 if(user!= null){
                     //user is signed in
                     Toast.makeText(Login.this,"Senin adın" + user.getEmail().toString(), Toast.LENGTH_SHORT).show();
+                    mail_adres = user.getEmail().toString();
                     //onSignedInInitialize(user.getDisplayName());
                 }
                 else{

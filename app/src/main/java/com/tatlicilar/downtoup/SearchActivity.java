@@ -88,15 +88,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-//        kisi.setName("Ander Herera");
-//        kisi.setPos("Midfielder");
-//        kisi.setImg(R.drawable.shakira);
-//        kisiler.add(kisi);
-//        kisi=new AramaKisiler();
-//        kisi.setName("David De Geaa");
-//        kisi.setPos("Goalkeeper");
-//        kisi.setImg(R.drawable.shakira);
-//        kisiler.add(kisi);
         return kisiler;
     }
+
 }

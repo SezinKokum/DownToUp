@@ -36,6 +36,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.tatlicilar.downtoup.fragment.Ebook;
 import com.tatlicilar.downtoup.fragment.Egitim;
+import com.tatlicilar.downtoup.fragment.FragmentChat;
 import com.tatlicilar.downtoup.fragment.FragmentEducation;
 
 public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
@@ -66,6 +67,11 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                     return true;
                 case R.id.navigation_Chat:
                     mTextMessage.setText("Chat");
+                    Fragment fragment2 = (Fragment) manager.findFragmentByTag(FragmentChat.class.getSimpleName());
+                    if (fragment2 == null) {
+                        fragment2 = FragmentChat.newInstance();
+                    }
+                    setFragment(fragment2);
                     return true;
                 case R.id.navigation_Egitim:
                     mTextMessage.setText("Egitim");
