@@ -19,6 +19,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
         android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
     <ImageView
         android:id="@+id/no_data_available_image"
@@ -55,7 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:focusableInTouchMode="true"
         android:gravity="bottom"
         android:orientation="horizontal"
