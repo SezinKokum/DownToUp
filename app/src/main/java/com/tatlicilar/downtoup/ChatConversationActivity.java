@@ -260,7 +260,6 @@ public class ChatConversationActivity extends AppCompatActivity {
         // Log.d("LOGGED", "On Start : " );
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Show_Chat_Conversation_Data_Items, Chat_Conversation_ViewHolder>(Show_Chat_Conversation_Data_Items.class, R.layout.show_chat_conversation_single_item, Chat_Conversation_ViewHolder.class, myRef) {
             public void populateViewHolder(final Chat_Conversation_ViewHolder viewHolder, Show_Chat_Conversation_Data_Items model, final int position) {
-
 //                viewHolder.getSender(model.getSender());
                 viewHolder.getSender(getIntent().getStringExtra("email"));
                 viewHolder.getMessage(model.getMessage());
