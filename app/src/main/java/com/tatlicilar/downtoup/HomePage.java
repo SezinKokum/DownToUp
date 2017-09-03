@@ -38,6 +38,7 @@ import com.tatlicilar.downtoup.fragment.Ebook;
 import com.tatlicilar.downtoup.fragment.Egitim;
 import com.tatlicilar.downtoup.fragment.FragmentChat;
 import com.tatlicilar.downtoup.fragment.FragmentEducation;
+import com.tatlicilar.downtoup.fragment.FragmentProfil;
 
 public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
         FragmentEducation.OnFragmentInteractionListener,Egitim.OnFragmentInteractionListener,
@@ -88,6 +89,11 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
                     return true;
                 case R.id.navigation_Profil:
                     mTextMessage.setText("Profil");
+                    Fragment fragment3 = (Fragment) manager.findFragmentByTag(FragmentProfil.class.getSimpleName());
+                    if (fragment3 == null) {
+                        fragment3 = FragmentProfil.newInstance();
+                    }
+                    setFragment(fragment3);
                     return true;
             }
             return false;
