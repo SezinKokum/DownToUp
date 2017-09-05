@@ -1,20 +1,29 @@
 package com.tatlicilar.downtoup.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tatlicilar.downtoup.R;
+import com.tatlicilar.downtoup.SearchActivity;
+import com.tatlicilar.downtoup.ViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +45,14 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
+    private FragmentActivity myContext;
+    Intent myIntent2;
     public FragmentProfil() {
         // Required empty public constructor
     }
@@ -121,5 +134,87 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
         void onFragmentInteraction(Uri uri);
     }
 
+    public void onViewCreated(View view,Bundle savedInstancestate){
 
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolBar);
+        toolbar.setTitle("App Bar Layout");
+        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        /*
+        Creating Adapter and setting that adapter to the viewPager
+        setSupportActionBar method takes the toolbar and sets it as
+        the default action bar thus making the toolbar work like a normal
+        action bar.
+         */
+        FragmentManager fragManager = myContext.getSupportFragmentManager(); //If using fragments from support v4
+        adapter = new ViewPagerAdapter(fragManager);
+
+//        adapter = new ViewPagerAdapter(getFragmentManager());
+
+        viewPager.setAdapter(adapter);
+        /*
+        TabLayout.newTab() method creates a tab view, Now a Tab view is not the view
+        which is below the tabs, its the tab itself.
+         */
+        //we also set the Test of the Tabs
+        final TabLayout.Tab test01 = tabLayout.newTab();
+        final TabLayout.Tab test02 = tabLayout.newTab();
+        final TabLayout.Tab test03 = tabLayout.newTab();
+        test01.setIcon(R.drawable.twof);
+        test02.setIcon(R.drawable.cloud);
+        test03.setIcon(R.drawable.placeholder);
+        tabLayout.addTab(test01,0);
+        tabLayout.addTab(test02,1);
+        tabLayout.addTab(test03,2);
+        tabLayout.setTabTextColors(ContextCompat.getColorStateList(getContext(),R.color.tab_selector));
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getContext(),R.color.colorAccent));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                                              @Override
+                                              public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                                              }
+                                              @Override
+                                              public void onPageSelected(int position) {
+                                                  switch (position) {
+                                                      case 0:
+                                                          test01.setIcon(R.drawable.twof);
+                                                          test02.setIcon(R.drawable.cloud);
+                                                          test03.setIcon(R.drawable.placeholder);
+                                                          break;
+                                                      case 1:
+                                                          test01.setIcon(R.drawable.twof);
+                                                          test02.setIcon(R.drawable.cloud);
+                                                          test03.setIcon(R.drawable.placeholder);
+                                                          Intent myIntent2 = new Intent(getActivity(), SearchActivity.class);
+                                                          getActivity().startActivity(myIntent2);
+                                                          break;
+                                                      case 2:
+                                                          test01.setIcon(R.drawable.twof);
+                                                          test02.setIcon(R.drawable.cloud);
+                                                          test03.setIcon(R.drawable.placeholder);
+                                                          break;
+                                                  }
+                                              }
+                                              @Override
+                                              public void onPageScrollStateChanged(int state) {}
+                                          }
+        );
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+
+            public void onTabReselected(TabLayout.Tab tab) { }
+        });
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        myContext=(FragmentActivity) activity;
+        super.onAttach(activity);
+    }
 }

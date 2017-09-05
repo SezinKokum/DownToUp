@@ -64,7 +64,7 @@ public class KayitOl extends AppCompatActivity implements ExpandableListView.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kayit_ol);
+        setContentView(R.layout.deneme);
         mExpandableListView = (ExpandableListView) findViewById(R.id.explv1);
         // Preparing list data
         prepareListData();
