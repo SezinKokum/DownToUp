@@ -31,6 +31,11 @@ public class EgitimIcerik1 extends AppCompatActivity implements View.OnClickList
 
        // aynı anda tek ses için
        if(mp != null) mp.release();
+//       if(mp != null) {
+//           mp.stop();
+//           mp.reset();
+//           mp.release();
+//       }
 
         // hangi imagebutton basıldıgı icin
 

@@ -38,6 +38,7 @@ import com.tatlicilar.downtoup.fragment.Ebook;
 import com.tatlicilar.downtoup.fragment.Egitim;
 import com.tatlicilar.downtoup.fragment.FragmentChat;
 import com.tatlicilar.downtoup.fragment.FragmentEducation;
+import com.tatlicilar.downtoup.fragment.FragmentPaylasim;
 import com.tatlicilar.downtoup.fragment.FragmentProfil;
 
 public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
@@ -65,6 +66,11 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
             switch (item.getItemId()) {
                 case R.id.navigation_Paylasim:
                     mTextMessage.setText("Paylaşım");
+                    Fragment fragment4 = (Fragment) manager.findFragmentByTag(FragmentPaylasim.class.getSimpleName());
+                    if (fragment4 == null) {
+                        fragment4 = FragmentPaylasim.newInstance();
+                    }
+                    setFragment(fragment4);
                     return true;
                 case R.id.navigation_Chat:
                     mTextMessage.setText("Chat");
