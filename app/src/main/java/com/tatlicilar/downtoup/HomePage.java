@@ -44,6 +44,7 @@ import com.tatlicilar.downtoup.fragment.FragmentProfil;
 public class HomePage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
         FragmentEducation.OnFragmentInteractionListener,Egitim.OnFragmentInteractionListener,
         Ebook.OnFragmentInteractionListener {
+    //sezin
 
     private Button chatBtn;
     private Button egitimBtn;
