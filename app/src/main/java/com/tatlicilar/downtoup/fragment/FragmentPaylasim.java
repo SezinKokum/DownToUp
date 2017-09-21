@@ -112,7 +112,7 @@ public class FragmentPaylasim extends android.support.v4.app.Fragment {
     }
 
     public void onViewCreated(View view,Bundle savedInstancestate){
-    final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+    final FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab2);
         fab.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {

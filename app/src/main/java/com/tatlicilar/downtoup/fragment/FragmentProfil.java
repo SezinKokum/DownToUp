@@ -166,7 +166,7 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
         tabLayout.addTab(test01,0);
         tabLayout.addTab(test02,1);
         tabLayout.addTab(test03,2);
-        
+
         tabLayout.setTabTextColors(ContextCompat.getColorStateList(getContext(),R.color.tab_selector));
         tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getContext(),R.color.colorAccent));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
