@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import com.tatlicilar.downtoup.EgitimActivity;
 import com.tatlicilar.downtoup.EgitimAdapter;
 import com.tatlicilar.downtoup.EgitimIcerik1;
+import com.tatlicilar.downtoup.EgitimIcerik2;
 import com.tatlicilar.downtoup.EgitimKategori;
 import com.tatlicilar.downtoup.R;
 import com.tatlicilar.downtoup.SearchActivity;
@@ -110,7 +111,8 @@ public class Egitim extends Fragment implements EgitimAdapter.AdapterListener,Re
                         Intent myIntent = new Intent(getActivity(), EgitimIcerik1.class);
                         getActivity().startActivity(myIntent);
                     case 1:
-
+                        Intent myIntent2 = new Intent(getActivity(), EgitimIcerik2.class);
+                        getActivity().startActivity(myIntent2);
                     case 2:
                     case 3:
                     case 4:
