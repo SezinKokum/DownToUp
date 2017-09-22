@@ -15,7 +15,7 @@
             android:id="@+id/playerImage"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/shakira"
+            android:src="@drawable/kafa2"
             app:civ_border_width="2dp"
             app:civ_border_color="#FFFAF0"/>
 

@@ -1,6 +1,8 @@
 package com.tatlicilar.downtoup;
+import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -39,8 +41,16 @@ public class SearchActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AlertDialog.Builder builder=new AlertDialog.Builder(SearchActivity.this);
+                builder.setMessage("Acil Durum Sayfamız Yapım Aşamasındadır.");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                AlertDialog alert=builder.create();
+                alert.show();
             }
         });
         sv= (SearchView) findViewById(R.id.mSearch);
@@ -79,7 +89,7 @@ public class SearchActivity extends AppCompatActivity {
                     final AramaKisiler kisi=new AramaKisiler();
                     kisi.setName(postSnapshot.child("ad").getValue().toString().concat(postSnapshot.child("soyad").getValue().toString()));
                     kisi.setPos("Profili Gör");
-                    kisi.setImg(R.drawable.shakira);
+                    kisi.setImg(R.drawable.kafa2);
                     kisiler.add(kisi);
                 }
             }

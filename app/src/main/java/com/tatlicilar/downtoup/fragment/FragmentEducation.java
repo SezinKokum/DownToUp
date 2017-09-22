@@ -72,6 +72,23 @@ public class FragmentEducation extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_education,container,false);
+//        Log.d(TAG,"oncreateViewdeyim");
+//        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+//        setupViewPager(viewPager);
+//
+//        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(viewPager);
+//
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+//        adapter.addFrag(Egitim.newInstance(), "ONE");
+//        adapter.addFrag(Ebook.newInstance(), "TWO");
+//        viewPager.setAdapter(adapter);
+//        setupTabIcons();
+        return view;
+    }
+
+    public void onViewCreated(View view,Bundle savedInstancestate){
+         //Inflate the layout for this fragment
         Log.d(TAG,"oncreateViewdeyim");
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -84,7 +101,6 @@ public class FragmentEducation extends android.support.v4.app.Fragment {
         adapter.addFrag(Ebook.newInstance(), "TWO");
         viewPager.setAdapter(adapter);
         setupTabIcons();
-        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
