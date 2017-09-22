@@ -213,6 +213,8 @@ public class Ebook extends Fragment implements RecyclerView.OnItemTouchListener{
 //                        openPDF(uri);
 //                    }
 //                });
+
+                //pdf i webview ile görüntülüyoruz
                     Intent intent = new Intent(context,WebViewSample.class);
                     startActivity(intent);
 
