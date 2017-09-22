@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user!= null){
                     //user is signed in
-                    Toast.makeText(Login.this,"Senin adın" + user.getEmail().toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Login.this,"Senin adın" + user.getEmail().toString(), Toast.LENGTH_SHORT).show();
                     mail_adres = user.getEmail().toString();
                     //onSignedInInitialize(user.getDisplayName());
                 }
@@ -212,10 +212,10 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 //                          userEmailRef = emailToKey(mDatabaseReference.child(String.valueOf(email)).toString());
                             userEmailRef2 = emailToKey(userEmailRef.toString());
                             //               Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(Login.this, "Mailin" + userEmailRef ,
-                                    Toast.LENGTH_SHORT).show();
-                            Toast.makeText(Login.this, "useremailref" + userEmailRef + userEmailRef2,
-                                    Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(Login.this, "Mailin" + userEmailRef ,
+                           //         Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(Login.this, "useremailref" + userEmailRef + userEmailRef2,
+                           //         Toast.LENGTH_SHORT).show();
                             userId = mDatabaseReference.push().getKey();
                             DatabaseReference rootRef = mFirebaseDatabase.getReference();
                             mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

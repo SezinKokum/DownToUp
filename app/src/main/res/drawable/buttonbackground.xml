@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+    *Burda kendimiz button oluşturmuyoruz .
+    *Sadece normalde(başlangıçta) ve tıklandığı zaman hangi image lerin gösterileceğini seçiyoruz
+     -->
+    <item android:drawable="@drawable/emerg" />
+</selector>
