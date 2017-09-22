@@ -161,8 +161,8 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action1) {
-            Toast.makeText(this, "action1",
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "action1",
+//                    Toast.LENGTH_SHORT).show();
             signOut();
 
             return true;
@@ -176,8 +176,8 @@ public class HomePage extends AppCompatActivity implements GoogleApiClient.OnCon
     }
     private void signOut() {
         //Firebase sign out
-        Toast.makeText(this, "Sign out tayım",
-                Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Sign out tayım",
+//                Toast.LENGTH_SHORT).show();
         mFirebaseAuth.signOut();
 
         //  Google sign out
