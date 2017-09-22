@@ -35,6 +35,7 @@ import com.tatlicilar.downtoup.EgitimActivity;
 import com.tatlicilar.downtoup.EgitimKategori;
 import com.tatlicilar.downtoup.Login;
 import com.tatlicilar.downtoup.R;
+import com.tatlicilar.downtoup.WebViewSample;
 
 import java.io.File;
 import java.io.IOException;
@@ -156,6 +157,8 @@ public class Ebook extends Fragment implements RecyclerView.OnItemTouchListener{
         View btnDownloadAsFile = view.findViewById(R.id.btn_download_file);
         View btnShowFile = view.findViewById(R.id.btn_goruntule);
 
+        final Context context = getContext();
+
         btnDownloadAsFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,38 +202,41 @@ public class Ebook extends Fragment implements RecyclerView.OnItemTouchListener{
         btnShowFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference storageRef = storage.getReferenceFromUrl("gs://downtoup-a09e8.appspot.com").child("gelisimpsikolojisi.pdf");
+//                FirebaseStorage storage = FirebaseStorage.getInstance();
+//                StorageReference storageRef = storage.getReferenceFromUrl("gs://downtoup-a09e8.appspot.com").child("gelisimpsikolojisi.pdf");
+//
+////                //get download file url
+//                storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                    @Override
+//                    public void onSuccess(Uri uri) {
+//                        Log.i("Main", "File uri: " + uri.toString());
+//                        openPDF(uri);
+//                    }
+//                });
+                    Intent intent = new Intent(context,WebViewSample.class);
+                    startActivity(intent);
 
-//                //get download file url
-                storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Log.i("Main", "File uri: " + uri.toString());
-                        openPDF(uri);
-                    }
-                });
 
             }
         });
 
     }
 
-    void openPDF(final Uri path) {
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(path, "application/pdf");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    Toast.makeText(getContext(),"PDF Görüntüleyici cihazda yüklü değil", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).start();
-
-    }
+//    void openPDF(final Uri path) {
+//        new Thread(new Runnable() {
+//            public void run() {
+//                try {
+//                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    intent.setDataAndType(path, "application/pdf");
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(intent);
+//                } catch (ActivityNotFoundException e) {
+//                    Toast.makeText(getContext(),"PDF Görüntüleyici cihazda yüklü değil", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }).start();
+//
+//    }
     protected void showProgressDialog(String title, String msg) {
         progressDialog = ProgressDialog.show(getContext(), title, msg, true);
     }
