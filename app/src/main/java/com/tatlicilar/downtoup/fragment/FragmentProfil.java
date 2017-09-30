@@ -20,13 +20,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.tatlicilar.downtoup.GoogleKayitOl;
+import com.tatlicilar.downtoup.HomePage;
+import com.tatlicilar.downtoup.Login;
 import com.tatlicilar.downtoup.R;
 import com.tatlicilar.downtoup.SearchActivity;
 import com.tatlicilar.downtoup.ViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.tatlicilar.downtoup.Login.ad_soyad;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +54,7 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -49,7 +63,12 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
 
+    private TextView adsoyad;
+
     private OnFragmentInteractionListener mListener;
+    private FirebaseDatabase mFirebaseDatabase; // access database
+    private DatabaseReference mDatabaseReference;
+    private FirebaseAuth mFirebaseAuth; // authentication için
 
     private FragmentActivity myContext;
     Intent myIntent2;
@@ -78,19 +97,53 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
 
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+//        View view =  inflater.inflate(R.layout.fragment_fragment_profil, container, false);
+//        adsoyad = (TextView)view.findViewById(R.id.adsoyad);
+//
+//        mFirebaseDatabase = FirebaseDatabase.getInstance();
+//        mDatabaseReference = mFirebaseDatabase.getReference("users");
+//        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//                mFirebaseAuth = FirebaseAuth.getInstance();
+//                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+//                final String userEmailRef = user.getEmail().toString(); // kişinin db deki esas maili (noktalı)
+//                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+//                    if (postSnapshot.child("email").getValue().equals(userEmailRef) ){
+//                        String ad = (String) postSnapshot.child("ad").getValue();
+//                        String soyad = (String) postSnapshot.child("soyad").getValue();
+//                        ad_soyad = ad + soyad;
+//                        Log.d(TAG, "===profil adın===="+ad_soyad);
+//                        adsoyad.setText(ad_soyad);
+//                        Toast.makeText(getContext(), "profil" +ad_soyad  ,
+//                                Toast.LENGTH_SHORT).show();
+//                        break;
+//                    }   else{
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//
+//        adsoyad.setText(ad_soyad);
         return inflater.inflate(R.layout.fragment_fragment_profil, container, false);
 
     }
@@ -212,6 +265,34 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
 
             public void onTabReselected(TabLayout.Tab tab) { }
         });
+        adsoyad = (TextView)view.findViewById(R.id.adsoyad);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+       mDatabaseReference = mFirebaseDatabase.getReference("users");
+       mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                mFirebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                final String userEmailRef = user.getEmail().toString(); // kişinin db deki esas maili (noktalı)
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                   if (postSnapshot.child("email").getValue().equals(userEmailRef) ){
+                       String ad = (String) postSnapshot.child("ad").getValue();
+                       String soyad = (String) postSnapshot.child("soyad").getValue();
+                        ad_soyad = ad + soyad;
+                       Log.d(TAG, "===profil adın===="+ad_soyad);
+                   adsoyad.setText(ad_soyad);
+                       Toast.makeText(getContext(), "profil" +ad_soyad  ,
+                               Toast.LENGTH_SHORT).show();
+                       break;
+                   }   else{
+                   }
+               }
+          }
+          @Override
+          public void onCancelled(DatabaseError databaseError) {
+          }
+       });
+        adsoyad.setText(ad_soyad);
     }
     @Override
     public void onAttach(Activity activity) {

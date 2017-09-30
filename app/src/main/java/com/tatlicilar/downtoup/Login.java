@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -54,6 +55,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private ProgressDialog mProgressDialog;
     private String userId;
     public static String mail_adres;
+    public static String ad_soyad;
     Intent intent, intent20,intent21;
     private Object g;
 
