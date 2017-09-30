@@ -52,17 +52,17 @@ public class EgitimIcerik1 extends AppCompatActivity  {
             }
         });
     }
-   @Override
-   public void onPause() {
-       super.onPause();
-       // media player bırakmak icin
-       if(mp != null) mp.release();
-    }
+//   @Override
+//   public void onPause() {
+//       super.onPause();
+//       // media player bırakmak icin
+//       if(mp != null) mp.release();
+//    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mp.stop();
-
+        finish();
     }
 }

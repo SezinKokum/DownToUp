@@ -21,6 +21,8 @@ import com.tatlicilar.downtoup.EgitimAdapter;
 import com.tatlicilar.downtoup.EgitimIcerik1;
 import com.tatlicilar.downtoup.EgitimIcerik2;
 import com.tatlicilar.downtoup.EgitimKategori;
+import com.tatlicilar.downtoup.HomePage;
+import com.tatlicilar.downtoup.Login;
 import com.tatlicilar.downtoup.R;
 import com.tatlicilar.downtoup.SearchActivity;
 
@@ -108,11 +110,15 @@ public class Egitim extends Fragment implements EgitimAdapter.AdapterListener,Re
                 //Values are passing to activity & to fragment as well
                 switch (position){
                     case 0:
-                        Intent myIntent = new Intent(getActivity(), EgitimIcerik1.class);
-                        getActivity().startActivity(myIntent);
+//                        Intent myIntent = new Intent(getActivity(), EgitimIcerik1.class);
+//                        getActivity().startActivity(myIntent);
+                        startActivity(new Intent(getContext(), EgitimIcerik1.class));
+                        break;
                     case 1:
-                        Intent myIntent2 = new Intent(getActivity(), EgitimIcerik2.class);
-                        getActivity().startActivity(myIntent2);
+//                        Intent myIntent2 = new Intent(getActivity(), EgitimIcerik2.class);
+//                        getActivity().startActivity(myIntent2);
+                        startActivity(new Intent(getContext(), EgitimIcerik2.class));
+                        break;
                     case 2:
                     case 3:
                     case 4:
