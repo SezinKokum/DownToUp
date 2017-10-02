@@ -191,5 +191,5 @@ public class FragmentEducation extends android.support.v4.app.Fragment {
             return mFragmentTitleList.get(position);
         }
     }
-
+    
 }
