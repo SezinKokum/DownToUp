@@ -20,6 +20,7 @@ import com.tatlicilar.downtoup.EgitimActivity;
 import com.tatlicilar.downtoup.EgitimAdapter;
 import com.tatlicilar.downtoup.EgitimIcerik1;
 import com.tatlicilar.downtoup.EgitimIcerik2;
+import com.tatlicilar.downtoup.EgitimIcerik3;
 import com.tatlicilar.downtoup.EgitimKategori;
 import com.tatlicilar.downtoup.HomePage;
 import com.tatlicilar.downtoup.Login;
@@ -120,6 +121,8 @@ public class Egitim extends Fragment implements EgitimAdapter.AdapterListener,Re
                         startActivity(new Intent(getContext(), EgitimIcerik2.class));
                         break;
                     case 2:
+                        startActivity(new Intent(getContext(), EgitimIcerik3.class));
+                        break;
                     case 3:
                     case 4:
 
