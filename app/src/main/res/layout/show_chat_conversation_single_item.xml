@@ -43,6 +43,6 @@
         android:adjustViewBounds="true"
         android:minWidth="150dp"
         android:scaleType="fitXY"
-        android:src="@drawable/shape_incoming_message"
+        android:src="@drawable/shape_outcoming_message"
         android:visibility="visible"/>
 </LinearLayout>

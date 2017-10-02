@@ -2,6 +2,7 @@ package com.tatlicilar.downtoup;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -389,10 +390,10 @@ public class ChatConversationActivity extends AppCompatActivity {
 
         private void getSender(String title) {
 
-
             if(title.equals(Login.mail_adres))
             {
-                //Log.d("LOGGED", "getSender: ");
+//                Log.d("LOGGED", "getSender: ");
+                Log.d("LOGGED", "ifteyim ");
                 params.setMargins((Device_Width/3),5,10,10);
                 text_params.setMargins(15,10,0,5);
                 sender.setLayoutParams(text_params);
@@ -405,6 +406,7 @@ public class ChatConversationActivity extends AppCompatActivity {
             }
             else
             {
+                Log.d("LOGGED", "elseteyim ");
                 params.setMargins(10,0,(Device_Width/3),10);
                 sender.setGravity(Gravity.START);
                 text_params.setMargins(60,10,0,5);
