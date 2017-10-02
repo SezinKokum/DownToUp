@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.tatlicilar.downtoup.GoogleKayitOl;
 import com.tatlicilar.downtoup.HomePage;
 import com.tatlicilar.downtoup.Login;
+import com.tatlicilar.downtoup.MapActivity;
 import com.tatlicilar.downtoup.R;
 import com.tatlicilar.downtoup.SearchActivity;
 import com.tatlicilar.downtoup.ViewPagerAdapter;
@@ -246,6 +247,8 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
                                                           test01.setIcon(R.drawable.twof);
                                                           test02.setIcon(R.drawable.cloud);
                                                           test03.setIcon(R.drawable.placeholder);
+                                                          Intent myIntent3 = new Intent(getActivity(), MapActivity.class);
+                                                          getActivity().startActivity(myIntent3);
                                                           break;
                                                   }
                                               }
@@ -281,8 +284,8 @@ public class FragmentProfil extends android.support.v4.app.Fragment{
                         ad_soyad = ad + soyad;
                        Log.d(TAG, "===profil adın===="+ad_soyad);
                    adsoyad.setText(ad_soyad);
-                       Toast.makeText(getContext(), "profil" +ad_soyad  ,
-                               Toast.LENGTH_SHORT).show();
+//                       Toast.makeText(getContext(), "profil" +ad_soyad  ,
+//                               Toast.LENGTH_SHORT).show();
                        break;
                    }   else{
                    }
